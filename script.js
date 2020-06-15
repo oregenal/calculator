@@ -3,7 +3,7 @@ const screen = document.querySelector('th'),
   table = document.querySelector('table')
 
 let action = false,
- mathematics = 0,
+ element = 0,
  lastAction = 0
 
 table.addEventListener('click', event => {
@@ -12,7 +12,7 @@ table.addEventListener('click', event => {
   } else {
     if (event.target.innerHTML === 'AC') {
       screen.innerHTML = '0'
-      mathematics = 0
+      element = 0
       action = false
       lastAction = 0
     } else if (event.target.innerHTML === '0' && screen.innerHTML === '0') {
@@ -30,20 +30,20 @@ table.addEventListener('click', event => {
     } else if (event.target.innerHTML === '/') {
       button()
     } else if (event.target.innerHTML === '%') {
-      if (mathematics == 0) {
+      if (element == 0) {
         screen.innerHTML = screen.innerHTML / 100
       } else {
-        screen.innerHTML = mathematics / 100 * screen.innerHTML
+        screen.innerHTML = element / 100 * screen.innerHTML
       }
     } else if (event.target.innerHTML === '=') {
       if (lastAction === '+') {
-        screen.innerHTML = mathematics + parseFloat(screen.innerHTML)
+        screen.innerHTML = element + parseFloat(screen.innerHTML)
       } else if (lastAction === '-') {
-        screen.innerHTML = mathematics - parseFloat(screen.innerHTML)
+        screen.innerHTML = element - parseFloat(screen.innerHTML)
       } else if (lastAction === '*') {
-        screen.innerHTML = mathematics * parseFloat(screen.innerHTML)
+        screen.innerHTML = element * parseFloat(screen.innerHTML)
       } else if (lastAction === '/') {
-        screen.innerHTML = mathematics / parseFloat(screen.innerHTML)
+        screen.innerHTML = element / parseFloat(screen.innerHTML)
       } else {
         return
       }
@@ -62,7 +62,7 @@ table.addEventListener('click', event => {
 })
 
 function button() {
-  mathematics = parseFloat(screen.innerHTML)
+  element = parseFloat(screen.innerHTML)
   action = true
   lastAction = event.target.innerHTML
 }
