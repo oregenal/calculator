@@ -53,6 +53,8 @@ table.addEventListener('click', event => {
     } else if (action) {
       screen.innerHTML = event.target.innerHTML
       action = !action
+    } else if (screen.innerHTML.length > 7) {
+      return
     } else {
       screen.innerHTML = screen.innerHTML + event.target.innerHTML
     }
