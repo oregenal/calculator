@@ -4,7 +4,8 @@ const screen = document.querySelector('th'),
 
 let action = false,
  element = 0,
- lastAction = 0
+ lastAction = 0,
+ result = 0
 
 table.addEventListener('click', event => {
   if (event.target.localName === 'th') {
@@ -20,7 +21,8 @@ table.addEventListener('click', event => {
     } else if (screen.innerHTML === '0' && event.target.innerHTML === '.') {
       screen.innerHTML = '0.'
     } else if (event.target.innerHTML === '+/-') {
-      screen.innerHTML = 0 - parseFloat(screen.innerHTML)
+      result = 0 - parseFloat(result)
+      screenDigits()
     } else if (event.target.innerHTML === '+') {
       button()
     } else if (event.target.innerHTML === '-') {
@@ -37,13 +39,17 @@ table.addEventListener('click', event => {
       }
     } else if (event.target.innerHTML === '=') {
       if (lastAction === '+') {
-        screen.innerHTML = element + parseFloat(screen.innerHTML)
+        result = element + parseFloat(screen.innerHTML)
+        screenDigits()
       } else if (lastAction === '-') {
-        screen.innerHTML = element - parseFloat(screen.innerHTML)
+        result = element - parseFloat(screen.innerHTML)
+        screenDigits()
       } else if (lastAction === '*') {
-        screen.innerHTML = element * parseFloat(screen.innerHTML)
+        result = element * parseFloat(screen.innerHTML)
+        screenDigits()
       } else if (lastAction === '/') {
-        screen.innerHTML = element / parseFloat(screen.innerHTML)
+        result = element / parseFloat(screen.innerHTML)
+        screenDigits()
       } else {
         return
       }
@@ -65,4 +71,16 @@ function button() {
   element = parseFloat(screen.innerHTML)
   action = true
   lastAction = event.target.innerHTML
+}
+
+function screenDigits() {
+  if (result.toString().length > 7 && Math.abs(result) >= 1) {
+    element = result
+    screen.innerHTML = `${(result / Math.pow(10, Math.round(result).toString().length)).toFixed(3)}e+${Math.round(result).toString().length}`
+  // } else if (result.toString().length > 7 && Math.abs(result) < 1) {
+  //   element = result
+  //   screen.innerHTML = `${(result / Math.pow(10, Math.round(result).toString().length)).toFixed(3)}e-${Math.round(result).toString().length}`
+  } else {
+    screen.innerHTML = result
+  }
 }
