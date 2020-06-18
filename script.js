@@ -77,9 +77,6 @@ function screenDigits() {
   if (result.toString().length > 7 && Math.abs(result) >= 1) {
     element = result
     screen.innerHTML = `${(result / Math.pow(10, Math.round(result).toString().length)).toFixed(3)}e+${Math.round(result).toString().length}`
-  // } else if (result.toString().length > 7 && Math.abs(result) < 1) {
-  //   element = result
-  //   screen.innerHTML = `${(result / Math.pow(10, Math.round(result).toString().length)).toFixed(3)}e-${Math.round(result).toString().length}`
   } else {
     screen.innerHTML = result
   }
