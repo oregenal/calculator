@@ -22,7 +22,7 @@ table.addEventListener('click', event => {
       screen.innerHTML = '0.'
     } else if (event.target.innerHTML === '+/-') {
       result = 0 - parseFloat(result)
-      screenDigits()
+        screen.innerHTML = result
     } else if (event.target.innerHTML === '+') {
       button()
     } else if (event.target.innerHTML === '-') {
@@ -40,16 +40,16 @@ table.addEventListener('click', event => {
     } else if (event.target.innerHTML === '=') {
       if (lastAction === '+') {
         result = element + parseFloat(screen.innerHTML)
-        screenDigits()
+        screen.innerHTML = result
       } else if (lastAction === '-') {
         result = element - parseFloat(screen.innerHTML)
-        screenDigits()
+        screen.innerHTML = result
       } else if (lastAction === '*') {
         result = element * parseFloat(screen.innerHTML)
-        screenDigits()
+        screen.innerHTML = result
       } else if (lastAction === '/') {
         result = element / parseFloat(screen.innerHTML)
-        screenDigits()
+        screen.innerHTML = result
       } else {
         return
       }
@@ -59,8 +59,6 @@ table.addEventListener('click', event => {
     } else if (action) {
       screen.innerHTML = event.target.innerHTML
       action = !action
-    } else if (screen.innerHTML.length > 7) {
-      return
     } else {
       screen.innerHTML = screen.innerHTML + event.target.innerHTML
     }
@@ -71,13 +69,4 @@ function button() {
   element = parseFloat(screen.innerHTML)
   action = true
   lastAction = event.target.innerHTML
-}
-
-function screenDigits() {
-  if (result.toString().length > 7 && Math.abs(result) >= 1) {
-    element = result
-    screen.innerHTML = `${(result / Math.pow(10, Math.round(result).toString().length)).toFixed(3)}e+${Math.round(result).toString().length}`
-  } else {
-    screen.innerHTML = result
-  }
 }
