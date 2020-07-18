@@ -5,7 +5,8 @@ const screen = document.querySelector('th'),
 let action = false,
  element = 0,
  lastAction = 0,
- result = 0
+ result = 0,
+ scale = 1
 
 table.addEventListener('click', event => {
   if (event.target.localName === 'th') {
@@ -61,6 +62,18 @@ table.addEventListener('click', event => {
       action = !action
     } else {
       screen.innerHTML = screen.innerHTML + event.target.innerHTML
+    }
+
+    if (screen.innerHTML.length > 8) {
+      if (screen.innerHTML.length > 8 * scale) {
+        scale += 0.5
+        let size = Math.ceil(56 - 8 * scale * 1.6)
+        screen.style.fontSize = `${size}px`
+        console.log(size)
+      }
+    } else {
+      scale = 1
+      screen.style.fontSize = '56px'
     }
   }
 })
