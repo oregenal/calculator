@@ -1,1 +1,1 @@
-Calculator JavaScript Study Project.
+Calculator - JavaScript Study Project.
