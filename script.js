@@ -69,7 +69,7 @@ table.addEventListener('click', event => {
         scale += 0.5
         let size = Math.ceil(56 - 8 * scale * 1.6)
         screen.style.fontSize = `${size}px`
-        console.log(size)
+        // console.log(size)
       }
     } else {
       scale = 1
